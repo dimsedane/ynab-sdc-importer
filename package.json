@@ -1,11 +1,13 @@
 {
   "dependencies": {
     "@fast-csv/parse": "^4.3.6",
+    "cssesc": "^3.0.0",
     "dotenv": "^16.0.3",
     "puppeteer-core": "^18.0.5",
     "ynab": "^1.32.0"
   },
   "devDependencies": {
+    "@types/cssesc": "^3.0.0",
     "@types/jest": "^29.1.1",
     "@types/puppeteer-core": "^5.4.0",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
