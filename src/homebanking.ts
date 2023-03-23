@@ -19,10 +19,14 @@ export async function getHomebankingData(page: puppeteer.Page, accountName: stri
     timeout: 2 * 60 * 1000
   });
   await page.click(`tr[title="${cssesc(accountName)}"]`);
-
-  await page.waitForSelector("button.account-header-actions__export-button");
   await delay(2000);
-  await page.click("button.account-header-actions__export-button");
+
+  // They broke the export, now we must first select all, then export.....
+  await page.waitForSelector('div.transaction-list-body div.transaction-field--bulk-select input[type=checkbox]')
+  await page.click('div.transaction-list-body div.transaction-field--bulk-select input[type=checkbox]');
+  
+  await page.waitForSelector('li.transaction-list__bulk-export-action > button')
+  await page.click('li.transaction-list__bulk-export-action > button');
 
   await page.waitForSelector("div.export-manager");
   await delay(2000);
