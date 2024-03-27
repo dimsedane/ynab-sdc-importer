@@ -10,7 +10,7 @@ export function prepareTransactions(foundTransactions: Transaction[], existingTr
         // If the transaction already is in ynab, skip it
         if (existingTransactions.some(t => {
             return t.date === transaction.date &&
-                t.memo == transaction.memo &&
+                t.memo.trim() == transaction.memo.trim() &&
                 t.amount == transaction.amount
         })) {
             console.log(`Skipping transaction for date ${transaction.date} with text ${transaction.memo}`);

@@ -18,11 +18,13 @@ export async function getHomebankingData(page: puppeteer.Page, accountName: stri
   await page.waitForSelector(`tr[title="${cssesc(accountName)}"]`, {
     timeout: 2 * 60 * 1000
   });
+  await delay(1000);
   await page.click(`tr[title="${cssesc(accountName)}"]`);
   await delay(2000);
 
   // They broke the export, now we must first select all, then export.....
   await page.waitForSelector('div.transaction-list-body div.transaction-field--bulk-select input[type=checkbox]')
+  await delay(1000);
   await page.click('div.transaction-list-body div.transaction-field--bulk-select input[type=checkbox]');
   
   await page.waitForSelector('li.transaction-list__bulk-export-action > button')
@@ -34,8 +36,6 @@ export async function getHomebankingData(page: puppeteer.Page, accountName: stri
   let button;
   while (!button) {
     [button] = await page.$x("//button[contains(., 'Eksporter i CSV')]");
-
-    await delay(500);
   }
 
   const [transactions] = await Promise.all([

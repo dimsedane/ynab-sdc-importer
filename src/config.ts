@@ -4,13 +4,19 @@ interface AccountConfiguration {
     bankName: string,
     ynabId: string
   }
+
+  interface CategoryMapping {
+    regex: string,
+    categoryId: string
+  }
   
   export interface Configuration {
     ynabAccessToken: string,
     budgetId: string,
     downloadsFolder: string,
     homebankingUrl: string,
-    accounts: AccountConfiguration[]
+    accounts: AccountConfiguration[],
+    categoryMappings: CategoryMapping[]
   }
 
   export function loadConfiguration() : Configuration {
